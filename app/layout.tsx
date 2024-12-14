@@ -30,21 +30,17 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ClerkProvider>
-			<html lang='en' className='dark'>
-				<body
-					className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-					suppressHydrationWarning={true}
-				>
-					<SocketProvider>
-						<main className='flex flex-col min-h-screen'>
-							<NavBar />
-							{children}
-							<Footer />
-						</main>
-					</SocketProvider>
-				</body>
-			</html>
-		</ClerkProvider>
+		<html lang='en' className='dark'>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				suppressHydrationWarning={true}
+			>
+				<main className='flex flex-col min-h-screen'>
+					<NavBar />
+					{children}
+					<Footer />
+				</main>
+			</body>
+		</html>
 	);
 }

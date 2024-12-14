@@ -3,15 +3,9 @@ import React from 'react';
 import Container from './Container';
 import { Menu, Video } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useAuth, UserButton } from '@clerk/nextjs';
-import { Button } from '../ui/button';
 import Image from 'next/image';
 import Logo from '@/public/pyc-logo.png';
-import Logo2 from '@/public/pyc-logo_2.png';
 import localFont from 'next/font/local';
-
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 import {
 	Sheet,
@@ -31,7 +25,7 @@ const beaufortLol = localFont({
 
 const NavBar = () => {
 	const router = useRouter();
-	const { userId } = useAuth();
+
 	return (
 		<div className='sticky top-0 border border-b-primary/10 header z-50 '>
 			<Container>
@@ -84,18 +78,16 @@ const NavBar = () => {
 						</div>
 					</div>
 					<div className=' flex items-center gap-3'>
-						{!userId && (
-							<div className={` ${beaufortLol.className} flex gap-2`}>
-								<Link href='/login'>
-									<button className=' button button--secondary w-20 md:w-24  h-9'>
-										<span className='button__title'> Log in </span>
-									</button>
-								</Link>
-								<button className=' button button--secondary w-20 md:w-24 h-9'>
-									<span className='button__title'>Sign up</span>
+						<div className={` ${beaufortLol.className} flex gap-2`}>
+							<Link href='/login'>
+								<button className=' button button--secondary w-20 md:w-24  h-9'>
+									<span className='button__title'> Log in </span>
 								</button>
-							</div>
-						)}
+							</Link>
+							<button className=' button button--secondary w-20 md:w-24 h-9'>
+								<span className='button__title'>Sign up</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</Container>
