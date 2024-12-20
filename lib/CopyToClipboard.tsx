@@ -1,5 +1,6 @@
 // components/CopyToClipboard.tsx
 'use client';
+import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { RiFileCopyFill } from 'react-icons/ri';
 
@@ -25,6 +26,7 @@ const CopyToClipboard: React.FC<CopyToClipboardProps> = ({ text, size }) => {
 
 		if (isCopied) {
 			timeout = setTimeout(() => setIsCopied(false), 3000);
+			toast.info('Copied to clipboard');
 		}
 
 		return () => clearTimeout(timeout);
@@ -39,11 +41,11 @@ const CopyToClipboard: React.FC<CopyToClipboardProps> = ({ text, size }) => {
 					}  cursor-pointer ${isCopied ? 'text-green-500' : 'text-gray-500'} `}
 				/>
 			</button>
-			{isCopied && (
+			{/* {isCopied && (
 				<div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900 p-2 rounded-md shadow-md'>
 					<span className='text-white text-xs'>Copied!</span>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };
