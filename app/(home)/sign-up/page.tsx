@@ -6,6 +6,7 @@ import AccountContainer from '@/components/layout/AccountContainer';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import {
 	Select,
 	SelectContent,
@@ -285,7 +286,6 @@ const SignUpPage = () => {
 										placeholder='Enter password'
 										value={password}
 										onChange={(e) => setPassword(e.target.value)}
-										onBlur={() => handlePasswordMatch()}
 									/>
 									<button
 										type='button'
@@ -353,7 +353,11 @@ const SignUpPage = () => {
 							</div>
 							<div className='mt-3'>
 								<button className='cmn-btn font-bold' type='submit'>
-									SignUp Now
+									{isRegisterLoading ? (
+										<PulseLoader color='#000' size={8} margin={2} />
+									) : (
+										<span>SignUp Now</span>
+									)}
 								</button>
 							</div>
 						</form>
