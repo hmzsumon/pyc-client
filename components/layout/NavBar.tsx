@@ -1,22 +1,11 @@
 'use client';
 import React from 'react';
 import Container from './Container';
-import { Menu, Video } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Logo from '@/public/pyc-logo.png';
 import localFont from 'next/font/local';
 
-import {
-	Sheet,
-	SheetClose,
-	SheetContent,
-	SheetDescription,
-	SheetFooter,
-	SheetHeader,
-	SheetTitle,
-	SheetTrigger,
-} from '@/components/ui/sheet';
 import Link from 'next/link';
 
 const beaufortLol = localFont({
@@ -31,7 +20,7 @@ const NavBar = () => {
 			<Container>
 				<div className='flex justify-between items-center'>
 					<div className=' flex items-center gap-1 cursor-pointer'>
-						<Sheet>
+						{/* <Sheet>
 							<SheetTrigger asChild>
 								<Menu className='md:hidden ' size={34} />
 							</SheetTrigger>
@@ -52,13 +41,13 @@ const NavBar = () => {
 									</SheetClose>
 								</div>
 							</SheetContent>
-						</Sheet>
+						</Sheet> */}
 
 						<div>
 							<Image
 								src={Logo}
 								alt='pyc logo'
-								className='w-36 md:w-44'
+								className='w-40 md:w-44'
 								onClick={() => router.push('/')}
 							/>
 						</div>
@@ -84,9 +73,11 @@ const NavBar = () => {
 									<span className='button__title'> Log in </span>
 								</button>
 							</Link>
-							<button className=' button button--secondary w-20 md:w-24 h-9'>
-								<span className='button__title'>Sign up</span>
-							</button>
+							<Link href='/sign-up'>
+								<button className=' button button--secondary w-20 md:w-24 h-9'>
+									<span className='button__title'>Sign up</span>
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>

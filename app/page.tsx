@@ -7,16 +7,17 @@ import PaymentSection from '@/components/home/PaymentSection';
 import PlanSection from '@/components/home/PlanSection';
 import WorkSection from '@/components/home/WorkSection';
 import { Button } from '@/components/ui/button';
+import HomeLayout from './(home)/layout';
 
 export default function Home() {
 	return (
-		<div>
+		<HomeLayout>
 			<HeroSection />
 			<AboutSection />
 			<PackageSection />
 			<ChooseSection />
 			<WorkSection />
 			<PaymentSection />
-		</div>
+		</HomeLayout>
 	);
 }

@@ -9,11 +9,9 @@ const PackageCard = ({ pkg }: any) => {
 					<li> Return: {pkg.return}</li>
 					<li>{pkg.days}</li>
 					<li>{pkg.duration}</li>
-					<li>{pkg.totalReturn}</li>
+					<li>{pkg.total_return}</li>
 				</ul>
-				<div className='package-card__range mt-5 base--color'>
-					${pkg.investment}
-				</div>
+				<div className='package-card__range mt-5 base--color'>${pkg.price}</div>
 				<button className='cmn-btn font-bold'>Invest Now</button>
 			</div>
 		</div>

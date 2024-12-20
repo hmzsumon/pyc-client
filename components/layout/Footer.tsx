@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo2 from '@/public/pyc-logo_2.png';
 import Image from 'next/image';
-import { clsx } from 'clsx';
+import Link from 'next/link';
 
 const Footer = () => {
 	return (
@@ -22,9 +22,21 @@ const Footer = () => {
 							<h2 className=' font-semibold'>
 								Quick <span className='text-[#cca354]'> Links</span>
 							</h2>
-							<li className=' text-sm'>Home</li>
-							<li className=' text-sm'>Privacy & Policy</li>
-							<li className=' text-sm'>Terms & Conditions</li>
+							<li className=' text-sm'>
+								<Link href='/' className='text-sm hover:text-[#cca354]'>
+									Home
+								</Link>
+							</li>
+							<li className=' text-sm'>
+								<Link href='/privacy' className='text-sm hover:text-[#cca354]'>
+									Privacy & Policy
+								</Link>
+							</li>
+							<li className=' text-sm'>
+								<Link href='/terms' className='text-sm hover:text-[#cca354]'>
+									Terms & Conditions
+								</Link>
+							</li>
 						</ul>
 					</div>
 				</div>

@@ -23,7 +23,7 @@ const HeroSection = () => {
 								Invest for Future in Stable Platform
 							</h1>
 							<h1
-								className={`text-4xl md:text-6xl font-bold leading-tight text-[#cca354]`}
+								className={`text-3xl md:text-6xl font-bold leading-tight text-[#cca354]`}
 							>
 								and Make Fast Money
 							</h1>
@@ -35,9 +35,10 @@ const HeroSection = () => {
 							most exciting returns on your investments, but we also guarantee
 							the security of your investment.
 						</p>
-						<button className='grad-btn px-10 py-2 rounded-xl font-bold'>
+						{/* <button className='grad-btn px-10 py-2 rounded-xl font-bold'>
 							Start Trading
-						</button>
+						</button> */}
+						<button className='cmn-btn font-bold'>Start Trading</button>
 					</div>
 
 					{/* Right Section */}
