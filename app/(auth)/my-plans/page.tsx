@@ -25,7 +25,7 @@ const MyPlansPage = () => {
 						</div>
 					</div>
 					<div className='account-card__body'>
-						<h4 className='package-card__title base--color mb-2 text-center'>
+						<h4 className='text-2xl base--color mb-2 text-center'>
 							Total Take Profit: $
 							{userPackage?.total_return.toLocaleString('en-US', {
 								minimumFractionDigits: 2,
@@ -44,11 +44,18 @@ const MyPlansPage = () => {
 								</span>
 							</li>
 						</ul>
-						<div className='package-card__range mt-5 base--color'>
-							<h2>My Plans:</h2>
+						<div className='package-card__range mt-5 '>
+							<h2 className=' base--color text-2xl font-bold'>
+								My Plans: {myPackages?.length}
+							</h2>
 							{myPackages?.map((pkg: any) => (
-								<div key={pkg._id}>
-									<h4>{pkg.title}</h4>
+								<div key={pkg._id} className=' space-y-2 mt-4'>
+									<button
+										className='cmn-btn font-bold disabled:cursor-not-allowed disabled:opacity-50 w-full '
+										type='submit'
+									>
+										{pkg.title}
+									</button>
 								</div>
 							))}
 						</div>

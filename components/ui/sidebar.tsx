@@ -34,6 +34,7 @@ type SidebarContext = {
 	setOpenMobile: (open: boolean) => void;
 	isMobile: boolean;
 	toggleSidebar: () => void;
+	closeSidebar: () => void;
 };
 
 const SidebarContext = React.createContext<SidebarContext | null>(null);
@@ -96,6 +97,12 @@ const SidebarProvider = React.forwardRef<
 				: setOpen((open) => !open);
 		}, [isMobile, setOpen, setOpenMobile]);
 
+		// create a function to close the sidebar when isMobile is true
+		// this function is used in the SidebarTrigger2 component
+		const closeSidebar = React.useCallback(() => {
+			return isMobile ? setOpenMobile(false) : null;
+		}, [isMobile, setOpenMobile]);
+
 		// Adds a keyboard shortcut to toggle the sidebar.
 		React.useEffect(() => {
 			const handleKeyDown = (event: KeyboardEvent) => {
@@ -125,8 +132,18 @@ const SidebarProvider = React.forwardRef<
 				openMobile,
 				setOpenMobile,
 				toggleSidebar,
+				closeSidebar,
 			}),
-			[state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+			[
+				state,
+				open,
+				setOpen,
+				isMobile,
+				openMobile,
+				setOpenMobile,
+				toggleSidebar,
+				closeSidebar,
+			]
 		);
 
 		return (
@@ -284,6 +301,23 @@ const SidebarTrigger = React.forwardRef<
 	);
 });
 SidebarTrigger.displayName = 'SidebarTrigger';
+
+// create a new component called SidebarTrigger2 for toggling the sidebar
+const SidebarTrigger2 = ({ children }: any) => {
+	const { closeSidebar } = useSidebar();
+	return (
+		<button
+			className=' text-left  hover:bg-gray-800 rounded-md w-full pl-2 py-1 '
+			onClick={() => {
+				closeSidebar();
+			}}
+			title='Toggle Sidebar'
+			aria-label='Toggle Sidebar '
+		>
+			{children}
+		</button>
+	);
+};
 
 const SidebarRail = React.forwardRef<
 	HTMLButtonElement,
@@ -759,5 +793,6 @@ export {
 	SidebarRail,
 	SidebarSeparator,
 	SidebarTrigger,
+	SidebarTrigger2,
 	useSidebar,
 };

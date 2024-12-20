@@ -127,7 +127,7 @@ const LoginPage = () => {
 							</div>
 							<div className='mt-3'>
 								<button
-									className='cmn-btn font-bold disabled:cursor-not-allowed disabled:opacity-50'
+									className='cmn-btn font-bold disabled:cursor-not-allowed disabled:opacity-50 w-full'
 									type='submit'
 									disabled={isLoading}
 								>

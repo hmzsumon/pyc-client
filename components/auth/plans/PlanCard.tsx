@@ -42,7 +42,7 @@ const PlanCard = ({ pkg }: any) => {
 	useEffect(() => {
 		if (isCreateSuccess) {
 			toast.success('Package created successfully');
-			router.push('/my-package');
+			router.push('/my-plans');
 		}
 		if (isCreatingError) {
 			toast.error((createError as fetchBaseQueryError).data?.message);

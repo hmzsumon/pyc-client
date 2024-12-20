@@ -22,8 +22,10 @@ import {
 	SidebarMenuAction,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarTrigger2,
 	useSidebar,
 } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 export function NavProjects({
 	projects,
@@ -43,10 +45,12 @@ export function NavProjects({
 				{projects.map((item) => (
 					<SidebarMenuItem key={item.name}>
 						<SidebarMenuButton asChild>
-							<a href={item.url}>
-								<item.icon />
-								<span>{item.name}</span>
-							</a>
+							<SidebarTrigger2>
+								<Link href={item.url} className='flex items-center gap-2'>
+									<item.icon />
+									<span>{item.name}</span>
+								</Link>
+							</SidebarTrigger2>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				))}

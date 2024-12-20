@@ -52,7 +52,7 @@ const NavBar = () => {
 							/>
 						</div>
 					</div>
-					<div>
+					{/* <div>
 						<div className='hidden md:flex gap-3'>
 							<Link href='/contact'>
 								<span className='text-primary hover:text-primary-dark'>
@@ -65,7 +65,7 @@ const NavBar = () => {
 								</span>
 							</Link>
 						</div>
-					</div>
+					</div> */}
 					<div className=' flex items-center gap-3'>
 						<div className={` ${beaufortLol.className} flex gap-2`}>
 							<Link href='/login'>
