@@ -45,8 +45,9 @@ export default function RootLayout({
 				</StoreProvider>
 				<ToastContainer
 					position='bottom-center'
-					autoClose={4000}
+					autoClose={3000}
 					theme='colored'
+					hideProgressBar={true}
 				/>
 			</body>
 		</html>
