@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import PulseLoader from 'react-spinners/PulseLoader';
 import { fetchBaseQueryError } from '@/redux/services/helpers';
 
 const VerifyEmailPage = () => {
@@ -143,8 +144,16 @@ const VerifyEmailPage = () => {
 							</div>
 
 							<div className='mt-3'>
-								<button className='cmn-btn font-bold w-full' type='submit'>
-									Verify Email
+								<button
+									className='cmn-btn font-bold w-full disabled:cursor-not-allowed disabled:opacity-50'
+									type='submit'
+									disabled={isLoading}
+								>
+									{isLoading ? (
+										<PulseLoader color='#fff' size={8} />
+									) : (
+										'Verify Email'
+									)}
 								</button>
 							</div>
 						</form>

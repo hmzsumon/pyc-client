@@ -352,7 +352,11 @@ const SignUpPage = () => {
 								</div>
 							</div>
 							<div className='mt-3'>
-								<button className='cmn-btn font-bold' type='submit'>
+								<button
+									className='cmn-btn font-bold'
+									type='submit'
+									disabled={isRegisterLoading}
+								>
 									{isRegisterLoading ? (
 										<PulseLoader color='#000' size={8} margin={2} />
 									) : (
