@@ -3,7 +3,7 @@ import React from 'react';
 import { useGet1LevelUserQuery } from '@/redux/features/auth/authApi';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-// import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const darkTheme = createTheme({
 	palette: {
@@ -63,26 +63,28 @@ const LevelOneTeamPage = () => {
 
 	return (
 		<div>
-			<ThemeProvider theme={darkTheme}>
-				<DataGrid
-					rows={rows}
-					columns={columns}
-					// rowHeight={38}
-					// initialState={{
-					// 	pagination: {
-					// 		paginationModel: { pageSize: 5, page: 0 },
-					// 	},
-					// }}
-					sx={{
-						boxShadow: 2,
-						border: 2,
-						borderColor: 'primary.light',
-						'& .MuiDataGrid-cell:hover': {
-							color: 'primary.main',
-						},
-					}}
-				/>
-			</ThemeProvider>
+			<div style={{ height: 400, width: '58%' }}>
+				<ThemeProvider theme={darkTheme}>
+					<DataGrid
+						rows={rows}
+						columns={columns}
+						// rowHeight={38}
+						// initialState={{
+						// 	pagination: {
+						// 		paginationModel: { pageSize: 5, page: 0 },
+						// 	},
+						// }}
+						// sx={{
+						// 	boxShadow: 2,
+						// 	border: 2,
+						// 	borderColor: 'primary.light',
+						// 	'& .MuiDataGrid-cell:hover': {
+						// 		color: 'primary.main',
+						// 	},
+						// }}
+					/>
+				</ThemeProvider>
+			</div>
 		</div>
 	);
 };
