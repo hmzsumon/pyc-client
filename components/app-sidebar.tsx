@@ -134,7 +134,7 @@ const data = {
 			items: [
 				{
 					title: 'Recent Transaction',
-					url: '#',
+					url: '/reports/transactions',
 				},
 				{
 					title: 'Balance Summary',
@@ -157,15 +157,11 @@ const data = {
 			items: [
 				{
 					title: 'Profile',
-					url: '#',
+					url: '/settings/profile',
 				},
 				{
 					title: 'Security ',
-					url: '#',
-				},
-				{
-					title: 'Wallet',
-					url: '#',
+					url: '/settings/security',
 				},
 			],
 		},
@@ -173,7 +169,7 @@ const data = {
 	projects: [
 		{
 			name: 'Rank Rewards',
-			url: '#',
+			url: '/rank-reward',
 			icon: Award,
 		},
 	],

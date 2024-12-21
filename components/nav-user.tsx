@@ -38,6 +38,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 export function NavUser() {
 	const { isMobile } = useSidebar();
@@ -109,12 +110,9 @@ export function NavUser() {
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
 								<BadgeCheck />
-								Account
+								<Link href='/settings/profile'>Profile</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<CreditCard />
-								Billing
-							</DropdownMenuItem>
+
 							<DropdownMenuItem>
 								<Bell />
 								Notifications
