@@ -25,6 +25,7 @@ const Dashboard = () => {
 					icon={Bag_1}
 					is_btn={true}
 					btn_text='Withdraw'
+					url='/withdraw'
 				/>
 				<DashboardCard
 					title='Deposit Balance'
@@ -32,6 +33,7 @@ const Dashboard = () => {
 					icon={Bag_2}
 					is_btn={true}
 					btn_text='Add Funds'
+					url='/deposit'
 				/>
 				<DashboardCard
 					title='Total Invest'
@@ -39,6 +41,7 @@ const Dashboard = () => {
 					icon={Bag_3}
 					is_btn={true}
 					btn_text='Invest Now'
+					url='/all-plans'
 				/>
 				<DashboardCard
 					title='Total Reward'

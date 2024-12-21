@@ -4,8 +4,16 @@ import Bag_1 from '@/public/fdw.png';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 
-export function DashboardCard({ title, amount, icon, is_btn, btn_text }: any) {
+export function DashboardCard({
+	title,
+	amount,
+	icon,
+	is_btn,
+	btn_text,
+	url,
+}: any) {
 	return (
 		<Card className='w-full px-4 py-3 flex gap-x-4 bg-gray-900'>
 			<div>
@@ -24,7 +32,7 @@ export function DashboardCard({ title, amount, icon, is_btn, btn_text }: any) {
 				</p>
 				{is_btn && (
 					<Button className='w-full' variant='secondary'>
-						{btn_text}
+						<Link href={url}>{btn_text}</Link>
 					</Button>
 				)}
 			</div>

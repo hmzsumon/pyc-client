@@ -207,6 +207,38 @@ export const authApi = apiSlice.injectEndpoints({
 			}),
 		}),
 
+		// get 1 level user
+		get1LevelUser: builder.query<any, any>({
+			query: () => ({
+				url: `/get-1-level-user`,
+				method: 'GET',
+			}),
+		}),
+
+		// get 2 level user
+		get2LevelUser: builder.query<any, any>({
+			query: () => ({
+				url: `/get-2-level-user`,
+				method: 'GET',
+			}),
+		}),
+
+		// get 3 level user
+		get3LevelUser: builder.query<any, any>({
+			query: () => ({
+				url: `/get-3-level-user`,
+				method: 'GET',
+			}),
+		}),
+
+		// get 4 level user
+		get4LevelUser: builder.query<any, any>({
+			query: () => ({
+				url: `/get-4-level-user`,
+				method: 'GET',
+			}),
+		}),
+
 		// get 3 level team data
 		get3LevelTeam: builder.query<any, any>({
 			query: () => ({
@@ -270,6 +302,10 @@ export const {
 	useChangeEmailMutation,
 	useVerifyCodeForChangeEmailMutation,
 	useGetMembersByLevelQuery,
+	useGet1LevelUserQuery,
+	useGet2LevelUserQuery,
+	useGet3LevelUserQuery,
+	useGet4LevelUserQuery,
 	useGet13LevelTreeQuery,
 	useFindUserByEmailOrUsernameMutation,
 	useGetUserByPartnerIdQuery,

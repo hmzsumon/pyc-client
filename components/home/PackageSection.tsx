@@ -23,8 +23,8 @@ const PackageSection = () => {
 
 				<div className=' my-4'>
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-						{packages.map((pkg: { id: any }) => (
-							<PackageCard key={pkg.id} pkg={pkg} />
+						{packages.map((pkg: { _id: any }) => (
+							<PackageCard key={pkg._id} pkg={pkg} />
 						))}
 					</div>
 				</div>

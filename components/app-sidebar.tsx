@@ -111,19 +111,19 @@ const data = {
 			items: [
 				{
 					title: '1St Level',
-					url: '#',
+					url: '/team-view/1st-level',
 				},
 				{
 					title: '2nd Level',
-					url: '#',
+					url: '/team-view/2nd-level',
 				},
 				{
 					title: '3rd Level',
-					url: '#',
+					url: '/team-view/3rd-level',
 				},
 				{
 					title: '4th Level',
-					url: '#',
+					url: '/team-view/4th-level',
 				},
 			],
 		},
