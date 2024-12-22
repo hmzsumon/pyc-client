@@ -108,15 +108,18 @@ export function NavUser() {
 
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							<DropdownMenuItem>
-								<BadgeCheck />
-								<Link href='/settings/profile'>Profile</Link>
-							</DropdownMenuItem>
-
-							<DropdownMenuItem>
-								<Bell />
-								Notifications
-							</DropdownMenuItem>
+							<Link href='/settings/profile'>
+								<DropdownMenuItem>
+									<BadgeCheck />
+									Profile
+								</DropdownMenuItem>
+							</Link>
+							<Link href='/notifications'>
+								<DropdownMenuItem>
+									<Bell />
+									Notifications
+								</DropdownMenuItem>
+							</Link>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem onClick={handleLogout}>

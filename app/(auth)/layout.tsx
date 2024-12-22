@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Bell } from 'lucide-react';
 import localFont from 'next/font/local';
+import Link from 'next/link';
 
 const josefinSans = localFont({
 	src: '../../app/fonts/JosefinSans-Regular.ttf',
@@ -48,7 +49,9 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 							</div>
 
 							<div className='flex-1 flex items-center justify-end px-4'>
-								<Bell />
+								<Link href='/notifications'>
+									<Bell className=' cursor-pointer' />
+								</Link>
 							</div>
 						</header>
 						<div className={`px-6 py-4 ${josefinSans.className}`}>
