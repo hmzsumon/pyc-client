@@ -58,11 +58,11 @@ export function NavMain({
 									{item.items?.map((subItem) => (
 										<SidebarMenuSubItem key={subItem.title}>
 											<SidebarMenuSubButton asChild>
-												<SidebarTrigger2>
-													<Link href={subItem.url}>
+												<Link href={subItem.url}>
+													<SidebarTrigger2>
 														<span>{subItem.title}</span>
-													</Link>
-												</SidebarTrigger2>
+													</SidebarTrigger2>
+												</Link>
 											</SidebarMenuSubButton>
 										</SidebarMenuSubItem>
 									))}

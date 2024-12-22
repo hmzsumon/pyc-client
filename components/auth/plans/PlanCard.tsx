@@ -18,6 +18,7 @@ import { useCreatePackageMutation } from '@/redux/features/package/packageApi';
 
 const PlanCard = ({ pkg }: any) => {
 	const router = useRouter();
+
 	// call create package mutation
 	const [
 		createPackage,
@@ -50,9 +51,13 @@ const PlanCard = ({ pkg }: any) => {
 	}, [isCreateSuccess, isCreatingError, createError]);
 
 	const [isOpen, setIsOpen] = useState(false); // State to control the drawer
-
 	const openDrawer = () => setIsOpen(true); // Function to open the drawer
-	const closeDrawer = () => setIsOpen(false); // Function to close the drawer
+	const closeDrawer = () => {
+		if (!isCreating) {
+			// Prevent closing if isCreating is true
+			setIsOpen(false);
+		}
+	};
 
 	const [sPackage, setSPackage] = useState(pkg); // State to store the package
 
@@ -82,15 +87,18 @@ const PlanCard = ({ pkg }: any) => {
 				</button>
 			</div>
 			{/* Drawer component */}
-			<Drawer open={isOpen} onOpenChange={setIsOpen}>
-				<DrawerContent className='drawer-card border-t-2 border-l-2 border-r-2  border-[#cca354]'>
+			<Drawer
+				open={isOpen}
+				onOpenChange={(open) => !isCreating && setIsOpen(open)}
+			>
+				<DrawerContent className='drawer-card border-t-2 border-l-2 border-r-2 border-[#cca354]'>
 					<div className='mx-auto w-full max-w-sm'>
 						<DrawerHeader>
 							<DrawerTitle className='text-base-color'>
 								Are you sure you want to invest?
 							</DrawerTitle>
 							<DrawerDescription>
-								<span className=' text-gray-50'>Investing in this plan </span>
+								<span className='text-gray-50'>Investing in this plan </span>
 								<span className='text-base-color font-semibold'>
 									{pkg.title}
 								</span>
@@ -99,14 +107,18 @@ const PlanCard = ({ pkg }: any) => {
 
 						<DrawerFooter>
 							<button
-								className='cmn-btn font-bold'
+								className='cmn-btn font-bold disabled:opacity-50 disabled:cursor-not-allowed'
 								onClick={() => handleCreatePackage(sPackage._id)}
 								disabled={isCreating}
 							>
-								Invest Now
+								{isCreating ? <PulseLoader color='#fff' size={8} /> : 'Confirm'}
 							</button>
 							<DrawerClose asChild>
-								<Button variant='destructive' onClick={closeDrawer}>
+								<Button
+									variant='destructive'
+									onClick={closeDrawer}
+									disabled={isCreating} // Disable the button during creation
+								>
 									Cancel
 								</Button>
 							</DrawerClose>

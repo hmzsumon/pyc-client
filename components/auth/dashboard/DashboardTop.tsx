@@ -5,6 +5,7 @@ import Man from '@/public/men.png';
 import CopyToClipboard from '@/lib/CopyToClipboard';
 import { Separator } from '@/components/ui/separator';
 import { useSelector } from 'react-redux';
+import { RWebShare } from 'react-web-share';
 
 const DashboardTop = () => {
 	const { user } = useSelector((state: any) => state.auth);
