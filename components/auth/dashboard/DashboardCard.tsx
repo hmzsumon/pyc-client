@@ -15,7 +15,7 @@ export function DashboardCard({
 	url,
 }: any) {
 	return (
-		<Card className='w-full px-4 py-3 flex gap-x-4 bg-gray-900'>
+		<Card className='w-full px-4 py-3 flex gap-x-4 bg-gray-900 border border-base-color rounded-md '>
 			<div>
 				<Image src={icon} alt='Bag' className='w-16' />
 			</div>
