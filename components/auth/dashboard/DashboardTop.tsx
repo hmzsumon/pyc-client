@@ -6,6 +6,7 @@ import CopyToClipboard from '@/lib/CopyToClipboard';
 import { Separator } from '@/components/ui/separator';
 import { useSelector } from 'react-redux';
 import { RWebShare } from 'react-web-share';
+import { maskEmail } from '@/lib/functions';
 
 const DashboardTop = () => {
 	const { user } = useSelector((state: any) => state.auth);
@@ -46,7 +47,7 @@ const DashboardTop = () => {
 					<div className='flex items-center'>
 						<p className='text-sm text-gray-500 space-x-1'>
 							<span>Email:</span>
-							<span>{user?.email}</span>
+							<span>{maskEmail(user?.email)}</span>
 						</p>
 						<CopyToClipboard text={user?.email} />
 					</div>
@@ -82,6 +83,18 @@ const DashboardTop = () => {
 						<span>Your invitation Link:</span> <span>{shortReferralLink}</span>
 					</p>
 					<CopyToClipboard text={referralLink} />
+				</div>
+
+				<div>
+					<RWebShare
+						data={{
+							title: 'Join Us',
+							text: 'Join Us',
+							url: referralLink,
+						}}
+					>
+						<button className='cmn-btn w-full font-bold'>Share</button>
+					</RWebShare>
 				</div>
 			</div>
 		</div>
