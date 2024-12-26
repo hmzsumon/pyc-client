@@ -43,12 +43,7 @@ const Dashboard = () => {
 					btn_text='Invest Now'
 					url='/all-plans'
 				/>
-				<DashboardCard
-					title='Total Reward'
-					amount={dashboardData?.total_reward || 0}
-					icon={Reward_1}
-					is_btn={false}
-				/>
+
 				<DashboardCard
 					title='Total Referral'
 					amount={dashboardData?.total_referral_earning || 0}
@@ -58,6 +53,19 @@ const Dashboard = () => {
 				<DashboardCard
 					title='Total Generation'
 					amount={dashboardData?.generation_earning || 0}
+					icon={Bag_1}
+					is_btn={false}
+				/>
+				<DashboardCard
+					title='Total Reward'
+					amount={dashboardData?.total_reward || 0}
+					icon={Reward_1}
+					is_btn={false}
+				/>
+
+				<DashboardCard
+					title='Total Earning'
+					amount={dashboardData?.total_earning || 0}
 					icon={Bag_1}
 					is_btn={false}
 				/>
