@@ -1,13 +1,89 @@
 'use client';
-import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import PulseLoader from 'react-spinners/PulseLoader';
+import { fetchBaseQueryError } from '@/redux/services/helpers';
+import { useCreateWithdrawRequestMutation } from '@/redux/features/withdraw/withdrawApi';
+import React, { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const WithdrawPage = () => {
+	const { user } = useSelector((state: any) => state.auth);
+
+	// call new withdraw api
+	const [withdraw, { isLoading, isSuccess, isError, error }] =
+		useCreateWithdrawRequestMutation();
+
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
 	const [amount, setAmount] = useState('');
 	const [amountError, setAmountError] = useState(false);
 	const [address, setAddress] = useState('');
+	const [availableAmount, setAvailable] = useState<number>(0);
+	const [receiveAmount, setReceiveAmount] = useState<number>(0);
+	const [errorText, setErrorText] = React.useState<string>('');
+	const [codeError, setCodeError] = useState<boolean>(false);
+
+	// set available amount
+	useEffect(() => {
+		const balance = user?.m_balance;
+		setAvailable(balance);
+	}, [user]);
+
+	// handle amount change
+	const handleAmountChange = (e: any) => {
+		const value = e.target.value;
+		setAmount(value);
+		if (value < 10) {
+			setErrorText('Minimum amount is 10 USDT');
+			return;
+		} else if (value > availableAmount) {
+			setErrorText('Insufficient balance');
+			return;
+		} else {
+			setErrorText('');
+		}
+
+		setReceiveAmount(Number(value) - Number(value) * 0.05 - 1);
+	};
+
+	// handle submit form
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		// console.log('submitting form');
+		const data = {
+			amount: amount,
+			net_amount: receiveAmount,
+			password: password,
+			charge_p: 0.05,
+			charge_a: 1,
+			method: {
+				name: 'Tether (USDT TRC20)',
+				network: 'Tron (TRC20)',
+				address: address,
+			},
+		};
+
+		withdraw(data);
+	};
+
+	// handle api response
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success('Withdraw request submitted successfully');
+			setAmount('');
+			setAddress('');
+			setPassword('');
+		}
+		if (isError) {
+			if ('data' in error) {
+				toast.error((error.data as { message: string }).message);
+			} else {
+				toast.error('An error occurred');
+			}
+		}
+	}, [isSuccess, isError]);
+
 	return (
 		<div className='flex items-center justify-center mt-32 md:mt-10 '>
 			<div className='flex items-center justify-center md:w-6/12 '>
@@ -26,9 +102,15 @@ const WithdrawPage = () => {
 					</div>
 					<div className='account-card__body'>
 						<h3 className='text-center text-xl font-bold'>
-							Available Balance: $0.00
+							Available Balance:{' '}
+							{user?.m_balance.toLocaleString('en-US', {
+								style: 'currency',
+								currency: 'USD',
+								minimumFractionDigits: 2,
+								maximumFractionDigits: 2,
+							})}
 						</h3>
-						<form className='mt-4 space-y-4 '>
+						<form className='mt-4 space-y-4 ' onSubmit={handleSubmit}>
 							<div className='space-y-2'>
 								<label>Amount to Withdraw</label>
 								<input
@@ -36,12 +118,30 @@ const WithdrawPage = () => {
 									className='form-control focus:outline-none focus:ring-1 focus:ring-[rgba(204,163,84,0.5)] focus:bg-transparent'
 									placeholder='Enter amount'
 									value={amount}
-									onChange={(e) => setAmount(e.target.value)}
+									onChange={handleAmountChange}
 								/>
-								{amountError && (
-									<p className='text-red-500 text-xs'>
-										Please enter a valid email
-									</p>
+								<small className='flex items-center justify-between px-1 mt-1 text-gray-100'>
+									<span className=''>
+										Available:
+										{user?.m_balance >= 0 ? (
+											<span className='mx-1  font-bold'>
+												{Number(user?.m_balance ? user?.m_balance : 0).toFixed(
+													2
+												)}
+											</span>
+										) : (
+											<PulseLoader size={10} color={'#fff'} />
+										)}
+										USDT
+									</span>
+									<span>
+										Min Amount:
+										<span className='mx-1  font-bold'>10</span>
+										USDT
+									</span>
+								</small>
+								{errorText && (
+									<small className='text-red-500 font-bold'>{errorText}</small>
 								)}
 							</div>
 
@@ -85,7 +185,11 @@ const WithdrawPage = () => {
 							</div>
 
 							<div className='mt-3'>
-								<button className='cmn-btn font-bold w-full' type='submit'>
+								<button
+									className='cmn-btn font-bold w-full disabled:opacity-50 disabled:cursor-not-allowed'
+									type='submit'
+									disabled={!!errorText || !amount || !address || !password}
+								>
 									Withdraw
 								</button>
 							</div>
